@@ -1,0 +1,29 @@
+*{
+	border-box: box-sizing;
+	margin: 0;
+	padding: 0;
+}
+
+
+#postGroup{	
+	border-bottom: 4px dashed #ddd;
+	padding: 20px 0;
+}
+#postGroup:last-child{
+	border-bottom: none;
+}
+#postGroup p{
+	font-weight: bold;	
+	text-align: right;
+}
+.input-text{
+	background-color: transparent;
+	border: 0;
+	border-bottom: 1px solid #ccc;
+	display: block;
+	padding: 5px;
+	width: 100%;
+}
+.input-text:focus{
+	outline: none;
+}
