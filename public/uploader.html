@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+</head>
+<body>
+	<div class="form-group col-md-12">
+        <input id="fileButton" type="file" value="upload" />
+    </div>
+    <div class="form-group col-md-12">
+        <progress id="uploader" value="0" max="100">0%</progress>
+    </div>
+    <script type="text/javascript">
+		// Initialize Firebase
+		var config = {
+		  apiKey: "AIzaSyDzif7BOOYgESIuvEl45CXspf9iyTO_5yE",
+		  authDomain: "fir-2eaf7.firebaseapp.com",
+		  databaseURL: "https://fir-2eaf7.firebaseio.com",
+		  storageBucket: "fir-2eaf7.appspot.com",
+		  messagingSenderId: "355157793688"
+		};
+		firebase.initializeApp(config);
+
+		var uploader = document.getElementById('uploader');
+		var fileButton = document.getElementById('fileButton');
+
+		fileButton.addEventListener('change', function(e){
+
+		  var file = e.target.files[0];
+
+		  var storageRef = firebase.storage().ref('posts/'+file.name);
+
+		  var task = storageRef.put(file);
+
+		  task.on('state_changed',
+
+		    function progress(snapshot){
+		      var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+		      uploader.value = percentage;
+		    },
+
+		    function error(err){
+
+		    },
+		    
+		    function complete(){
+		    	alert("Upload completo!");
+		    }
+
+		  );
+
+		});
+	</script>
+</body>
+</html>

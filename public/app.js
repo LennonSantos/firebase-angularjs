@@ -8,14 +8,12 @@ var config = {
 };
 firebase.initializeApp(config);
 
-var storageRef = firebase.storage().ref();
-
 var app  = angular.module("myApp", ["firebase"]);
 
  app.controller("CtrlList", function($scope, $firebaseArray){
 
   var ref = firebase.database().ref().child("posts");
-
+ 
   $scope.posts = $firebaseArray(ref);
 
   $scope.addPost = function(){          
