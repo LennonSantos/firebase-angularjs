@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAT</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/2.2.0/angularfire.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body ng-controller="CtrlList">
+    <div id="init">
+      <header>
+        <h1>Chat do Lennon</h1>
+      </header>
+      <section>
+        <h2>Bem Vindo</h2>
+        <p>Para entrar no chat faça login com o facebook.</p>
+      </section>
+      <button id="btnLogin">Login com facebook</button>
+    </div>    
+    <div id="chat">
+      <div id="messages">
+        <button id="btnSair">Sair</button>
+        <table ng-repeat="x in chatx">
+            <tr>
+              <td>
+                <img src="{{ x.img }}" alt="" class="avatar">
+              </td>
+              <td>
+                <!-- {{ x.author }} -->
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>{{ x.text }}</td>
+            </tr>
+        </table>
+        <br><br><br><br><br><br><br>
+      </div> <!-- #messages -->
+      <div id="form">
+        <form ng-submit="addPost()">
+            <textarea ng-model="newText" placeholder="Texto" class="form-control"></textarea>  
+            <button type="submit" class="btn btn-default">&raquo;</button>
+        </form>
+      </div> <!-- #form -->
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

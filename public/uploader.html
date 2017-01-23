@@ -10,7 +10,7 @@
         <input id="fileButton" type="file" value="upload" />
     </div>
     <div class="form-group col-md-12">
-        <progress id="uploader" value="0" max="100">0%</progress>
+        <progress id="uploader" value="20" max="100"></progress>
     </div>
     <script type="text/javascript">
 		// Initialize Firebase
@@ -36,17 +36,22 @@
 
 		  task.on('state_changed',
 
-		    function progress(snapshot){
-		      var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-		      uploader.value = percentage;
+		    function(snapshot){
+		      // var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+		      // uploader.value = percentage;
+		      // console.log('Upload is ' + percentage + '% done');
+		      //alert(snapshot.totalBytes);
+		      var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    		  console.log('Upload is ' + progress + '% done');
 		    },
 
-		    function error(err){
+		    function(err){
 
 		    },
 		    
-		    function complete(){
-		    	alert("Upload completo!");
+		    function(){
+		    	console.log(task.snapshot.downloadURL);
+		    	// alert("Upload completo!");
 		    }
 
 		  );
